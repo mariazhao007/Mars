@@ -12,9 +12,13 @@ import {
   View
 } from 'react-native';
 import Search from './search-box';
+import MapView from 'react-native-maps';
+import PriceMarker from './PriceMarker';
+import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
+
 
 export default class Mars extends Component {
-  render() {
+    render() {
     return (
       <View style={styles.container}>
         <Search
@@ -24,9 +28,27 @@ export default class Mars extends Component {
              * Please scroll down to Props section
              */
         />
-        <Text style={styles.map}>
-          mapView
-        </Text>
+        <MapView style={styles.map}
+                 initialRegion={{
+                     latitude: 37.78825,
+                     longitude: -122.4324,
+                     latitudeDelta: 0.0922,
+                     longitudeDelta: 0.0421,
+                 }}
+        >
+             <MapView.Marker key="1"
+                coordinate={{latitude: 37.78825, longitude: -122.4324}} >
+                <PriceMarker amount={"苹果社区北区(10套)"} />
+             </MapView.Marker>
+             <MapView.Marker key="2"
+                    coordinate={{latitude: 37.765719, longitude: -122.454193}} >
+                    <PriceMarker amount={"苹果社区北区(10套)"} />
+             </MapView.Marker>
+             <MapView.Marker key="3"
+                    coordinate={{latitude: 37.754587, longitude: -122.394519}} >
+                    <PriceMarker amount={"苹果社区北区(10套)"} />
+             </MapView.Marker>
+        </MapView>
         <Text style={styles.caresel}>
           images lightbox
         </Text>
@@ -39,10 +61,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 18,
-    backgroundColor: '#F5FCFF',
   },
   map: {
-    backgroundColor: '#888888',
     height: 365,
   },
   caresel: {
