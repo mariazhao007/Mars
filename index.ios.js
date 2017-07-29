@@ -20,7 +20,7 @@ import PriceMarker from './PriceMarker';
 
 const { width, height } = Dimensions.get("window");
 
-const CARD_HEIGHT = height / 4;
+const CARD_HEIGHT = height / 3.2;
 const CARD_WIDTH = CARD_HEIGHT + 50;
 export default class Mars extends Component {
     render() {
@@ -61,14 +61,30 @@ export default class Mars extends Component {
             horizontal={true}
             style={styles.scrollView}
             >
-            <Image style={styles.card} source={{ uri: "https://i.imgur.com/sNam9iJ.jpg" }} />
-            <Image style={styles.card} source={{ uri: "https://i.imgur.com/UDrH0wm.jpg" }} />
-            <Image style={styles.card} source={{ uri: "https://i.imgur.com/Ka8kNST.jpg" }} />
+            <View style={styles.card}>
+                <Image style={styles.cardImage} source={{ uri: "https://i.imgur.com/sNam9iJ.jpg" }} />
+                <View style={styles.textContent}>
+                    <Text numberOfLines={1} style={styles.cardtitle}>苹果社区北区</Text>
+                </View>
+            </View>
+            <View style={styles.card}>
+                <Image style={styles.cardImage} source={{ uri: "https://i.imgur.com/N7rlQYt.jpg" }} />
+                <View style={styles.textContent}>
+                    <Text numberOfLines={1} style={styles.cardtitle}>苹果社区北区</Text>
+                </View>
+            </View>
+            <View style={styles.card}>
+                <Image style={styles.cardImage} source={{ uri: "https://i.imgur.com/Ka8kNST.jpg" }} />
+                <View style={styles.textContent}>
+                    <Text numberOfLines={1} style={styles.cardtitle}>苹果社区北区</Text>
+                </View>
+            </View>
         </ScrollView>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -80,14 +96,14 @@ const styles = StyleSheet.create({
   },
     scrollView: {
         position: "absolute",
-        bottom: 10,
+        bottom: -15,
         left: 0,
         right: 0,
-        paddingVertical: 30,
+        paddingVertical: 10,
     },
     card: {
-        padding: 10,
-        backgroundColor: "#FFF",
+
+        backgroundColor: "#fff",
         marginHorizontal: 10,
         shadowColor: "#000",
         shadowRadius: 5,
@@ -96,6 +112,20 @@ const styles = StyleSheet.create({
         height: CARD_HEIGHT,
         width: CARD_WIDTH,
         overflow: "hidden",
+    },
+    cardImage: {
+        flex: 3,
+        width: "100%",
+        height: "100%",
+        alignSelf: "center",
+    },
+    textContent: {
+        flex: 1,
+    },
+    cardtitle: {
+        fontSize: 13,
+        marginTop: 6,
+        fontWeight: "bold",
     },
 });
 
