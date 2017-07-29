@@ -9,14 +9,19 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+    Image,
+    Dimensions,
+    ScrollView
 } from 'react-native';
 import Search from './search-box';
 import MapView from 'react-native-maps';
 import PriceMarker from './PriceMarker';
-import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
+const { width, height } = Dimensions.get("window");
 
+const CARD_HEIGHT = height / 4;
+const CARD_WIDTH = CARD_HEIGHT + 50;
 export default class Mars extends Component {
     render() {
     return (
@@ -38,6 +43,7 @@ export default class Mars extends Component {
         >
              <MapView.Marker key="1"
                 coordinate={{latitude: 37.78825, longitude: -122.4324}} >
+
                 <PriceMarker amount={"苹果社区北区(10套)"} />
              </MapView.Marker>
              <MapView.Marker key="2"
@@ -49,9 +55,16 @@ export default class Mars extends Component {
                     <PriceMarker amount={"苹果社区北区(10套)"} />
              </MapView.Marker>
         </MapView>
-        <Text style={styles.caresel}>
-          images lightbox
-        </Text>
+
+
+        <ScrollView
+            horizontal={true}
+            style={styles.scrollView}
+            >
+            <Image style={styles.card} source={{ uri: "https://i.imgur.com/sNam9iJ.jpg" }} />
+            <Image style={styles.card} source={{ uri: "https://i.imgur.com/UDrH0wm.jpg" }} />
+            <Image style={styles.card} source={{ uri: "https://i.imgur.com/Ka8kNST.jpg" }} />
+        </ScrollView>
       </View>
     );
   }
@@ -65,10 +78,25 @@ const styles = StyleSheet.create({
   map: {
     height: 365,
   },
-  caresel: {
-    color: '#333333',
-
-  },
+    scrollView: {
+        position: "absolute",
+        bottom: 10,
+        left: 0,
+        right: 0,
+        paddingVertical: 30,
+    },
+    card: {
+        padding: 10,
+        backgroundColor: "#FFF",
+        marginHorizontal: 10,
+        shadowColor: "#000",
+        shadowRadius: 5,
+        shadowOpacity: 0.3,
+        shadowOffset: { x: 2, y: -2 },
+        height: CARD_HEIGHT,
+        width: CARD_WIDTH,
+        overflow: "hidden",
+    },
 });
 
 AppRegistry.registerComponent('Mars', () => Mars);
